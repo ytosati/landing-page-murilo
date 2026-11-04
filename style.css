@@ -4,13 +4,25 @@
   box-sizing: border-box;
 }
 
+/* Cormorant Garamond (Google Fonts, SIL OFL), hospedada localmente: só o subconjunto latino */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin.woff2") format("woff2");
+}
+
 :root {
-  --color-bg: #0b3d2e;
+  --color-bg: #2b2d31;
+  --color-card: rgba(24, 25, 28, 0.88);
+  --color-border: rgba(255, 255, 255, 0.08);
   --color-text: #ffffff;
-  --color-muted: #cfe3db;
+  --color-muted: #b9bcc2;
   --color-cta: #25d366;
   --color-cta-hover: #1ebe5a;
   --color-cta-text: #0b2a1f;
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 html {
@@ -18,29 +30,103 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
   color: var(--color-text);
   background: var(--color-bg);
 }
 
+/* Fundo: faixas de logos em movimento (montadas pelo script.js) */
+.brand-wall {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;                 /* 60px de faixa + 16px = BRAND_ROW_HEIGHT no script.js */
+  overflow: hidden;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.brand-wall__row {
+  flex-shrink: 0;
+  height: 3.75rem;
+}
+
+.brand-wall__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: brand-scroll-left linear infinite;
+  will-change: transform;
+}
+
+.brand-wall__track--right {
+  animation-name: brand-scroll-right;
+}
+
+.brand-wall__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 8.5rem;
+  height: 100%;
+  margin-right: 1rem;        /* 136px de logo + 16px = BRAND_CHIP_WIDTH no script.js (margem em vez de gap para o loop fechar exato) */
+  padding: 0.75rem 1rem;
+}
+
+.brand-wall__chip img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Logos pretos ficam brancos no fundo chumbo; Mido, Tissot e Victorinox mantêm suas cores */
+.brand-wall__chip--mono img {
+  filter: brightness(0) invert(1);
+}
+
+@keyframes brand-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes brand-scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* Vinheta leve no centro para o bloco ganhar destaque */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(43, 45, 49, 0.6) 0%, rgba(43, 45, 49, 0) 65%);
+}
+
 .hero {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   width: 100%;
-  max-width: 32rem;
+  max-width: 28rem;
   margin: 0 auto;
   padding: 2rem 1rem;
-  text-align: center;
 }
 
 /* Espaço reservado para o caranguejo mascote */
@@ -48,15 +134,46 @@ body {
   min-height: 1px;
 }
 
-.hero__title {
-  margin: 0;
-  font-size: clamp(1.75rem, 7vw, 2.5rem);
-  line-height: 1.2;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  text-align: center;
+  background: var(--color-card);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
-.hero__text {
+.card__eyebrow {
   margin: 0;
-  font-size: 1.125rem;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-cta);
+}
+
+.card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.125rem, 9vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.card__text {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--color-muted);
 }
 
@@ -66,7 +183,6 @@ body {
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  max-width: 20rem;
   min-height: 3.5rem;
   margin-top: 0.5rem;
   padding: 0.875rem 1.5rem;
@@ -76,7 +192,7 @@ body {
   text-decoration: none;
   color: var(--color-cta-text);
   background: var(--color-cta);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
   transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -97,13 +213,15 @@ body {
   flex-shrink: 0;
 }
 
-.hero__note {
+.card__note {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-muted);
 }
 
 .footer {
+  position: relative;
+  z-index: 1;
   padding: 1rem;
   font-size: 0.75rem;
   text-align: center;
@@ -111,7 +229,11 @@ body {
 }
 
 .footer p {
+  display: inline-block;
   margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(24, 25, 28, 0.85);
 }
 
 @media (prefers-reduced-motion: reduce) {

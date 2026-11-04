@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entre no grupo do WhatsApp</title>
-  <meta name="description" content="Clique no botão e entre no nosso grupo do WhatsApp.">
-  <meta name="theme-color" content="#0b3d2e">
+  <title>Grupo VIP de Promoções de Relógios</title>
+  <meta name="description" content="Entre no Grupo VIP e receba promoções exclusivas de relógios no WhatsApp.">
+  <meta name="theme-color" content="#2b2d31">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 
   <script>
@@ -44,18 +45,24 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <!-- Fundo decorativo com os logos das marcas (preenchido pelo script.js) -->
+  <div class="brand-wall" id="brand-wall" aria-hidden="true"></div>
+
   <main class="hero">
     <div class="mascot" id="mascot" aria-hidden="true"></div>
 
-    <h1 class="hero__title">Entre no nosso grupo do WhatsApp</h1>
-    <p class="hero__text">Receba novidades e conteúdos exclusivos direto no seu celular.</p>
+    <section class="card">
+      <p class="card__eyebrow">Grupo VIP</p>
+      <h1 class="card__title">Promoções exclusivas de relógios</h1>
+      <p class="card__text">Ofertas e lançamentos das melhores marcas, antes de todo mundo, direto no seu WhatsApp.</p>
 
-    <a class="cta" id="whatsapp-cta" href="#" target="_blank" rel="noopener">
-      <img class="cta__icon" src="assets/whatsapp.svg" alt="" width="24" height="24">
-      Entrar no grupo
-    </a>
+      <a class="cta" id="whatsapp-cta" href="#" target="_blank" rel="noopener">
+        <img class="cta__icon" src="assets/whatsapp.svg" alt="" width="24" height="24">
+        Entrar no Grupo VIP
+      </a>
 
-    <p class="hero__note">É gratuito. Você pode sair do grupo quando quiser.</p>
+      <p class="card__note">Gratuito · Saia quando quiser</p>
+    </section>
   </main>
 
   <footer class="footer">
