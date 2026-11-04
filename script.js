@@ -27,12 +27,12 @@
   var BRAND_LOGOS = [
     'tissot.svg', 'seiko.svg', 'hamilton.svg', 'longines.svg', 'mido.svg', 'bulova.svg',
     'citizen.svg', 'baume.svg', 'victorinox.svg', 'oris.svg',
-    'rolex.png', 'omega.png', 'cartier.png', 'breitling.png', 'patek.png', 'audemars.png',
-    'iwc.png', 'panerai.png', 'casio.png', 'swatch.png', 'tudor.png', 'zenith.png',
-    'jaeger.png', 'hublot.png', 'movado.png', 'montblanc.png'
+    'casio.png', 'swatch.png', 'movado.png', 'timex.png', 'technos.png', 'orient.png',
+    'festina.png', 'lotus.png', 'skagen.png', 'certina.png', 'mondaine.png', 'gshock.png',
+    'wellington.png', 'invicta.png'
   ];
   // Mantêm as cores originais; os demais são escuros e viram brancos
-  var COLORED_LOGOS = ['mido.svg', 'tissot.svg', 'victorinox.svg', 'audemars.png'];
+  var COLORED_LOGOS = ['mido.svg', 'tissot.svg', 'victorinox.svg', 'orient.png'];
   var BRAND_CHIP_WIDTH = 152;   // largura do selo + espaçamento (px), igual ao CSS
   var BRAND_ROW_HEIGHT = 76;    // altura da faixa + espaçamento (px), igual ao CSS
   var BRAND_SPEED = 25;         // px por segundo, igual para todas as faixas
