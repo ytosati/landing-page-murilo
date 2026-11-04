@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entre no grupo do WhatsApp</title>
+  <meta name="description" content="Clique no botão e entre no nosso grupo do WhatsApp.">
+  <meta name="theme-color" content="#0b3d2e">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    /* =========================================================
+       CONFIGURAÇÃO — edite apenas estes dois valores
+       ========================================================= */
+    window.SITE_CONFIG = {
+      PIXEL_ID: 'SEU_PIXEL_ID',              // ID do Meta Pixel (só números)
+      WHATSAPP_GROUP_URL: 'LINK_DO_GRUPO'    // https://chat.whatsapp.com/...
+    };
+    /* ========================================================= */
+
+    // Meta Pixel — código base. Só carrega quando o PIXEL_ID real estiver preenchido.
+    (function (config) {
+      if (!/^\d+$/.test(config.PIXEL_ID)) {
+        console.info('[Pixel] PIXEL_ID ainda não configurado. Pixel desativado.');
+        return;
+      }
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', config.PIXEL_ID);
+      fbq('track', 'PageView');
+    })(window.SITE_CONFIG);
+  </script>
+  <!-- Fallback sem JavaScript: troque SEU_PIXEL_ID aqui também (mesmo valor do PIXEL_ID acima) -->
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"></noscript>
+
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="hero">
+    <div class="mascot" id="mascot" aria-hidden="true"></div>
+
+    <h1 class="hero__title">Entre no nosso grupo do WhatsApp</h1>
+    <p class="hero__text">Receba novidades e conteúdos exclusivos direto no seu celular.</p>
+
+    <a class="cta" id="whatsapp-cta" href="#" target="_blank" rel="noopener">
+      <img class="cta__icon" src="assets/whatsapp.svg" alt="" width="24" height="24">
+      Entrar no grupo
+    </a>
+
+    <p class="hero__note">É gratuito. Você pode sair do grupo quando quiser.</p>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year">2026</span> Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
